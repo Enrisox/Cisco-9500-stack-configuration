@@ -7,7 +7,8 @@ This guide describes how to upgrade the firmware on a Cisco Catalyst 9500 switch
 1. Copy the new Cisco IOS XE firmware image to a USB drive.
 2. Insert the USB drive into the switch.
 3. Verify that the switch detects the USB and check the exact image name:
-   ```bash
+
+```bash
 dir usbflash0:
 ```
 4. Install the new firmware image (example for switch 1, adjust filename as needed):
