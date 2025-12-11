@@ -80,6 +80,17 @@ Repeat the same configuration on **Switch 2** (adjusting the slot/port notation 
 ### Configuring Dual-Active Detection (DAD)
 
 Use a third physical link between the two switches for split‑brain protection (Dual‑Active Detection), for example on interface TenGigabitEthernet1/0/38 on both switches.
+Dual-Active Detection (DAD) and split-brain detection are mechanisms used in Cisco StackWise Virtual to avoid the situation where both switches believe they are the active control plane at the same time, which would break Layer 2/Layer 3 consistency.​
+
+### Split-brain / Dual-active problem
+In a StackWise Virtual pair, one switch is active and the other is standby.
+If the StackWise Virtual Links (SVL) between the two switches fail but both devices still have connectivity to the network, each one might think the other is dead and promote itself to active.
+This “dual-active” state (split-brain) can cause duplicated routing, duplicated HSRP/VRRP gateways, MAC flapping, and general control-plane chaos.​
+What Dual-Active Detection (DAD) does
+DAD adds an extra detection channel (separate from the SVL) to check if the peer is still alive and also thinks it is active.
+On Catalyst 9500 you usually configure DAD on a dedicated physical link (for example TenGigabitEthernet1/0/38 on both switches) with the command:
+
+
 
 On **Switch 1** and switch2:
 ```bash
@@ -90,6 +101,7 @@ exit
 write memory
 reload
 ```
+If a dual-active condition is detected (SVL down but DAD still up on both sides), one of the switches automatically takes corrective action (for example placing itself into recovery mode) so that only a single active control plane remains.
 After both switches reload, verify DAD status:
 ```bash
 show stackwise-virtual dual-active-detection
