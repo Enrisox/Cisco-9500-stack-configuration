@@ -1,5 +1,5 @@
 # Cisco Catalyst 9500 StackWise Virtual – Two-Switch Setup
-I had the opportunity to carry out this mini networking project during my internship at Cloudfire as a **Cloud Engineer**.
+I had the opportunity to carry out this mini networking project during my internship as a **Cloud Engineer**.
 This guide describes how to upgrade the firmware on a Cisco Catalyst 9500 switch, prepare both devices, and create a StackWise Virtual pair between two Cisco Catalyst switches. <br>
 
 ![the 2 switches](./img/BD82E47A-5818-495E-B714-DF8971BDD16B.jpg)
