@@ -2,6 +2,8 @@
 
 This guide describes how to upgrade the firmware on a Cisco Catalyst 9500 switch, prepare both devices, and create a StackWise Virtual pair between two switches.
 
+![the 2 switches](imgs/BD82E47A-5818-495E-B714-DF8971BDD16B.jpg)
+
 ## Firmware installation from USB
 
 1. Copy the new Cisco IOS XE firmware image to a USB drive.
@@ -107,7 +109,7 @@ request platform software package install switch all file bootflash:<image-name>
 
 3. Wait for the installation to complete and for the stack to reload if required.
 4. Verify the software version on both switches:
-5. 5. Check the StackWise Virtual status:
+5. Check the StackWise Virtual status:
 
 ```bash
 show version
