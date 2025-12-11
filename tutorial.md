@@ -79,8 +79,41 @@ Repeat the same configuration on **Switch 2** (adjusting the slot/port notation 
 
 Use a third physical link between the two switches for split‑brain protection (Dual‑Active Detection), for example on interface TenGigabitEthernet1/0/38 on both switches.
 
-On **Switch 1**:
+On **Switch 1** and switch2:
+```bash
+configure terminal
+interface TenGigabitEthernet1/0/38
+stackwise-virtual dual-active-detection
+exit
+write memory
+reload
+```
+After both switches reload, verify DAD status:
+```bash
+show stackwise-virtual dual-active-detection
+```
 
+You should see interfaces `TenGigabitEthernet1/0/38` and `TenGigabitEthernet2/0/38` in **up** state (one per switch).
 
+### Upgrading the Stack Software (Both Switches)
 
+Once the stack is formed, you can upgrade the software on all members by copying the new `.bin` image to the `bootflash:` of **one** switch.
+
+1. Copy the desired `.bin` image to `bootflash:` on one of the switches.  
+2. From the active switch, run:
+```bash
+request platform software package install switch all file bootflash:<image-name>.bin auto-copy new
+```
+
+3. Wait for the installation to complete and for the stack to reload if required.
+4. Verify the software version on both switches:
+5. 5. Check the StackWise Virtual status:
+
+```bash
+show version
+show stackwise-virtual
+show ip interface brief
+```
+
+Make sure that `Te1/0/39`, `Te1/0/40`, and the corresponding ports on the second switch are in **up/up** state, confirming that the StackWise Virtual Links are operational.
 
