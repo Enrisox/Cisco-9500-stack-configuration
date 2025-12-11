@@ -131,3 +131,5 @@ show ip interface brief
 
 Make sure that `Te1/0/39`, `Te1/0/40`, and the corresponding ports on the second switch are in **up/up** state, confirming that the StackWise Virtual Links are operational.
 
+### Job done
+If everything went as planned, updating a single switch via USB should now automatically update both switches.
